@@ -1,0 +1,51 @@
+[
+  {
+    "school": "Lake Washington High School",
+    "location": "Kirkland, WA",
+    "degree": "High School Diploma",
+    "yearGraduated": "2001",
+    "studies": "General",
+    "activities": "Newspaper, swim team"
+  },
+  {
+    "school": "Washington State University",
+    "location": "Pullman, WA",
+    "degree": "Bachelor of Arts",
+    "yearGraduated": "2005",
+    "studies": "Communication in advertising major, sociology minor",
+    "courses": [
+      {
+        "class": "201: Fundamentals",
+        "focus": "html, css",
+        "projects": ["Busmall", "Drink with a Cold one"]
+      }
+
+      ],
+    "activities": "AdClub"
+  },
+  {
+    "school": "Code Fellows",
+    "location": "Seattle, WA",
+    "degree": "Certificate in Full-Stack JavaSctipt Software Development",
+    "yearGraduated": "2016",
+    "studies": "Software Development",
+    "courses": [
+      {
+        "class": "201: Fundamentals",
+        "focus": "html, css",
+        "projects": ["Busmall", "Drink with a Cold one"]
+      },
+      {
+        "class": "301: Intermediate",
+        "focus": "html, css",
+        "projects": ["Portfolio", "Drink with a Cold one"]
+      },
+      {
+        "class": "401: Advanced JS",
+        "focus": "html, css",
+        "projects": ["Many", "More"]
+      }
+      ],
+    "activities": ["Women Who Code", "JS Seattle"]
+  }
+]

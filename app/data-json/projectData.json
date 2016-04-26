@@ -1,0 +1,28 @@
+[
+
+  {
+    "category":"201",
+    "title":"campfire-coffee",
+    "createdOn":"jan-11-16",
+    "body":"<p>This project showcased using the DOM in creating tables in JS to populate new stores and store data. Campfire Coffee hired us to figure out how many beans are needed daily per store location based on average numbers of cups, lbs of beans and customers per hour.</p>",
+    "repoLink":"http://lwenke01.github.io/campfire-coffee",
+    "image":"../img/camp3.png"
+  },
+  {
+    "category":"201",
+    "title":"BusMall",
+    "createdOn":"jan-18-16",
+    "body":"<p>This site was created for a focus group in helping determine the best products to showcase in the BusMall (SkyMall for buses) catalog. The marketing group wanted to show 3 random pictures on the 15 products in 15 sets. I created local storage to store how many time one clicked on the image and a chart using DOM to populate the percentages in a graph.</p>",
+    "repoLink":"http://lwenke01.github.io/busMall",
+    "image":"../img/busmalllogo.png"
+
+  },
+  {
+    "category":"201",
+    "title":"Drink With a Cold One",
+    "createdOn":"jan-25-16",
+    "body":"<p>This was our final project for 201. We created a virtual drinking game with historic figures.</p>",
+    "repoLink":"http://lwenke01.github.io/virtual-drunks-project",
+    "image":"../img/logo3.png"
+  }
+  ]

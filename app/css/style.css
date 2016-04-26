@@ -1,0 +1,9 @@
+
+* {
+
+  border-color: red;
+}
+.navbar{
+  display: block;
+  background-color: lightblue;
+}

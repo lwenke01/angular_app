@@ -1,0 +1,31 @@
+[
+  {
+    "company": "CommerceHub",
+    "location": "Seattle, WA",
+    "position":"Marketing Manager",
+    "duties":["Management of product listing ads, marketplaces and comparison shopping engines including: Bing Shopping, Google Shopping, Amazon, Ebay, Jet, Shopzilla, Polyvore, Facebook and emerging new channels.
+", "Presented online shopping metrics, insights, benchmarks, and industry trends", "Developed a comprehensive understanding of client marketing goals to ensure successful channel launches & feed integrations"],
+    "startDate": "4/2015",
+    "endDate": "11/2015"
+  },
+  {
+    "company": "Google",
+    "location": "Kirkland, WA",
+    "position":"Solutions Consultant (Fixed-Term)",
+    "duties":["Worked extensively with clients and internal teams cross-functionally to ensure a smooth integration onto the Google Analytics platform.
+","Created technical integrations with emerging media companies, publishers and ad servers.","•	Educated and trained new clients on our UI platform.
+"],
+    "startDate": "5/2014",
+    "endDate": "11/2014"
+
+  },
+  {
+    "company": "Adometry Inc. (Google)",
+    "location": "Redmond, WA",
+    "position":"Media Integration Strategist",
+    "duties":"",
+    "startDate": "",
+    "endDate": ""
+  }
+
+]
