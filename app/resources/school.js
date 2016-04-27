@@ -2,34 +2,14 @@
 
 (function(){
 
-angular.module('myApp');
+var app = angular.module('school');
 
-  app.factory('DataService', ['$http', function($http){
-    const mainRoute = './data-json/'
-    function DataService(dataFile){
-      this.dataFile = dataFile;
-    }
-    DataService.prototype.getAllEducation = function($http){
-      return $http.get(mainRoute + 'educationData.json');
-  }
-  DataService.prototype.getAllWork = function($http){
-    return $http.get(mainRoute + 'employmentData.json');
-}
+app.contoller('SchoolController', ['$http', 'DataService', SchoolController])
 
-      }]);
-
-
-  app.controller('WorkController', function (DataService){
-       DataService.getAllWork()
-       .then((result)=>{
-         this.jobs = result.data;
-       });
-  });
-
-  app.directive('customResume', function(){
+app.directive('customSchool', function(){
     return {
       retrict: 'E',
-      templateUrl: './templates/portfolio-resume.html',
+      templateUrl: './templates/portfolio-school.html',
       controller:function($http){
         $http.get('./data-json/educationData.json')
         .then((result)=>{

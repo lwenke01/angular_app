@@ -1,0 +1,28 @@
+
+<section class="work-info" ng-show="tabCtrl.isSet(2)">
+
+    <h1>Work</h1>
+    <div class="work-list" ng-controller="WorkController as wkrCtrl" ng-repeat="job in wkrCtrl.jobs | orderBy:'-endDate'">
+      <h2>{{job.company}} | {{job.position}} | ({{job.location}})</h2>
+      <p>duties:</p>
+      <ul>
+        <li>{{job.duties[0]}}</li>
+        <li>{{job.duties[1]}}</li>
+        <li>{{job.duties[2]}}</li>
+        <li>{{job.duties[3]}}</li>
+      </ul>
+      <p>{{job.startDate}} to {{job.endDate}}</p>
+    </div>
+    <!-- <div ng-controller="FirstWorkController as fWkrCtrl">
+      <h2>{{firstJob.company}} | {{fWkrCtrl.firstJob.poisiton}} | {{fWkrCtrl.firstJob.location}}</h2>
+      <p>duties:</p>
+      <ul>
+        <li>{{firstJob.duties[0]}}</li>
+        <li>{{fWkrCtrl.jobs.duties[1]}}</li>
+        <li>{{fWkrCtrl.jobs.duties[2]}}</li>
+        <li>{{fWkrCtrl.jobs.duties[3]}}</li>
+      </ul>
+      <p>{{fWkrCtrl.jobs.startDate}} to {{fWkrCtrl.jobs.endDate}}</p>
+    </div> -->
+
+</section>

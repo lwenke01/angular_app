@@ -6,4 +6,7 @@
 .navbar{
   display: block;
   background-color: lightblue;
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: 5em;
 }
