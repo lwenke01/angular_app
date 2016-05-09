@@ -6,14 +6,18 @@ require('angular-route');
 const app = angular.module('myApp', ['ngRoute']);
 
 //controllers
-require(__dirname + '/controllers/school.js')(app);
-require(__dirname + '/controllers/work.js')(app);
+require(__dirname + '/controllers/about.js')(app);
+require(__dirname + '/controllers/contact.js')(app);
+require(__dirname + '/controllers/main.js')(app);
+require(__dirname + '/controllers/project.js')(app);
 
 //services
 require(__dirname + '/services/auth-service.js')(app);
 
 
 //Directives
+require(__dirname + '/directives/resume.js')(app);
+require(__dirname + '/directives/project.js')(app);
 
 //routes
 
