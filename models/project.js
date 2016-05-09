@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 
-projectSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
   name: String,
   description: String,
   created: String,

@@ -1,0 +1,24 @@
+
+<section class="resume-info" ng-show="tabCtrl.isSet(1)">
+  <div class="education-info">
+    <h1>Education</h1>
+    <div class="school-list" ng-repeat="school in edCtrl.schools | orderBy:'-yearGraduated'">
+      <h2>{{school.school}}  <em>({{school.location}})</em></h2>
+      <p>Graduated: {{school.yearGraduated}}</p>
+      <p>Degree: {{school.degree}}</p>
+    </div>
+  </div>
+</section>
+
+<h1>Work</h1>
+<div class="work-list" ng-controller="WorkController as wkrCtrl" ng-repeat="job in wkrCtrl.jobs | orderBy:'-endDate'">
+  <h2>{{job.company}} | {{job.position}} | ({{job.location}})</h2>
+  <p>duties:</p>
+  <ul>
+    <li>{{job.duties[0]}}</li>
+    <li>{{job.duties[1]}}</li>
+    <li>{{job.duties[2]}}</li>
+    <li>{{job.duties[3]}}</li>
+  </ul>
+  <p>{{job.startDate}} to {{job.endDate}}</p>
+</div>

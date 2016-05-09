@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 
-resumeSchema = new mongoose.Schema({
+const resumeSchema = new mongoose.Schema({
     company: String,
     title: String,
     description: String,

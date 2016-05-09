@@ -15,7 +15,7 @@ app.use((req, res, next)=>{
 const authRouter = require(__dirname + '/routes/auth-route');
 const userRouter = require(__dirname + '/routes/user-route');
 const resumeRouter = require(__dirname + '/routes/resume-route');
-const projectRouter = require(__dirname + '/routes/projects-route');
+const projectRouter = require(__dirname + '/routes/project-route');
 
 app.use(authRouter);
 app.use(userRouter);
