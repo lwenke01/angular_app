@@ -53,8 +53,8 @@ app.controller('ProjectController', ['$http','$window','AuthService', 'ErrorServ
   vm.removeProject = function(project){
     $http.delete(projectRoute + '/' + project._id, {
       headers: {
-        token: AuthService.getToken(),
-        'Content-Type': 'application/json'
+        token: AuthService.getToken()
+
       }
     })
     .then(function(res){
