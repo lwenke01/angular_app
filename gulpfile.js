@@ -1,3 +1,5 @@
+'use strict';
+
 const gulp = require('gulp');
 const webpack = require('webpack-stream');
 const sass = require('gulp-sass');
@@ -11,6 +13,11 @@ const sources = {
 
 
 };
+gulp.task('default', function() {
+  return gulp.src('./entry.js')
+    .pipe(webpack())
+    .pipe(gulp.dest('build/'));
+});
 
 gulp.task('build:css', function() {
   gulp.src('app/sass/index.sass')

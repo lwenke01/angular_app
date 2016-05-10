@@ -2,15 +2,25 @@
 <html ng-app="myApp">
 <head>
   <title>Lisa's Portfolio</title>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <script type="text/javascript" src="./bundle.js"></script>
 </head>
 <body ng-controller="ProjectController">
+  <nav class="navbar">
+       <ul>
+         <li><a href="#/home">Home</a></li>
+         <li><a href="#/projects">Projects</a></li>
+         <li><a href="#/contact">Contact</a></li>
+       </ul>
 
+  </nav>
   <div id="main">
     {{message}}
     <div ng-view></div>
 
   </div>
 
-  <script type="text/javascript" src="./bundle.js"></script>
 </body>
 </html>

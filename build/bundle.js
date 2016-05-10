@@ -46,14 +46,9 @@
 
 	__webpack_require__(1);
 	__webpack_require__(7);
-	__webpack_require__(8);
 	__webpack_require__(6);
-	__webpack_require__(9);
-	__webpack_require__(10);
-	__webpack_require__(11);
-	__webpack_require__(12);
-	__webpack_require__(13);
-	module.exports = __webpack_require__(14);
+	__webpack_require__(8);
+	module.exports = __webpack_require__(9);
 
 
 /***/ },
@@ -68,44 +63,60 @@
 	const app = angular.module('myApp', ['ngRoute']);
 
 	__webpack_require__(6)(app);
-	// require(__dirname + '/directives/app-directive.js')(app);
+	__webpack_require__(7)(app);
+	__webpack_require__(8)(app);
 
-	app.controller('ProjectController', ['$http','$window','AuthService', '$location', function($http,$window, AuthService, $location){
+	app.controller('ProjectController', ['$http','$window','AuthService', 'ErrorService', '$location', function($http,$window, AuthService,  ErrorService, $location){
 	  const projectRoute = 'http://localhost:3000/projects';
-	  this.projects = ['projects']
+	  const mainRoute = 'http://localhost:3000';
+
+	  this.projects = ['project'];
+	  this.error = ErrorService();
+	  this.editing = false
 
 
 	  this.getProjects = function(){
 	    var tokenFromLocalStorage = $window.localStorage.token;
 	    console.log('localStorage?? ' + $window.localStorage.token);
-	    $http.get(projectRoute, {
+	    $http({
+				method: 'GET',
+				url: projectRoute,
 	      headers: {
 	        token: AuthService.getToken()
 	      }
 	    })
 	    .then(function(result){
-	      this.projects = result.data;
+	      // this.error = ErrorService(null);
+	      console.log('GET RESSULT ' + result.data);
+	      // if (result.data.data.length){
+	        this.projects = result;
+
+	      // }
 	    }, (err)=>{
-	      return err;
+	      this.error = ErrorService('Please Sign in');
 	      $location.path('/signup');
 	    });
 	  };
 	  this.createProject = function(project){
 	    $http.post(projectRoute, project, {
 	      headers: {
-	        token: AuthService.getToken()
+	        token: AuthService.getToken(),
+	        'Content-Type': 'application/json'
 	      }
 	    })
 	    .then(function(res){
-	      console.log(res);
+	      console.log(res.data);
 	      this.projects.push(res.data);
-	      this.newProject = null;
+	      this.getProjects();
+	    }, (err)=>{
+	      console.log(err);
 	    });
 	  };
 	  this.removeProject = function(project){
 	    $http.delete(projectRoute + '/' + project._id, {
 	      headers: {
-	        token: AuthService.getToken()
+	        token: AuthService.getToken(),
+	        'Content-Type': 'application/json'
 	      }
 	    })
 	    .then(function(res){
@@ -115,7 +126,8 @@
 	  this.updateProject = function(project){
 	    $http.put(projectRoute + '/' + project._id, project, {
 	      headers: {
-	        token: AuthService.getToken()
+	        token: AuthService.getToken(),
+	        'Content-Type': 'application/json'
 	      }
 	    })
 	    .then((res)=>{
@@ -123,6 +135,7 @@
 	    }, (err)=> console.log(err));
 	  };
 	  this.toggleForm = function(project){
+	    var backupName;
 	    if(!project.editing){
 	      project.backupName = project.name;
 	      project.editing = true;
@@ -131,21 +144,27 @@
 	      project.editing = false;
 	    }
 	  }
+	  }]);
+
+	  app.controller('AuthController', ['$http','$window','AuthService','ErrorService', '$location', function($http,$window, AuthService, ErrorService, $location){
+
 	  this.signUp = function(user){
-	    AuthService.createUser(user, function(err, res){
-	      if(err) return err;
+	    AuthService.createUser(user, function(err){
+	      if(err) return this.error = ErrorService('cannot create user');
+	      this.error = ErrorService(null);
 	      $location.path('/home');
 	    });
-	  }
+	  };
 
 	  this.signOut = function(){
 	    AuthService.signOut(()=>{
 	      $location.path('/signup');
 	    });
-	  }
+	  };
 	  this.signIn = function(user){
-	    AuthService.signIn(user, (err, res)=>{
-	      if(err) return err;
+	    AuthService.signIn(user, (err)=>{
+	      if(err) return err= ErrorService('Error signin in. Try again');
+	      this.error = ErrorService(null);
 	      $location.path('/home');
 	    });
 	  };
@@ -159,24 +178,34 @@
 	  // homepage
 	  .when('/home', {
 	    templateUrl: 'pages/home.html',
-	    controller: 'ProjectController',
-	    controllerAs: 'projectctrl'
+	    controller: 'AuthController',
+	    controllerAs: 'authctrl'
 	  })
 	  .when('/', {
 	    templateUrl: 'pages/home.html',
-	    controller: 'ProjectController',
-	    controllerAs: 'projectctrl'
+	    controller: 'AuthController',
+	    controllerAs: 'authctrl'
 	  })
 
 	  .when('/signup', {
-	  controller: 'ProjectController',
-	  controllerAs: 'projectctrl',
+	  controller: 'AuthController',
+	  controllerAs: 'authctrl',
 	  templateUrl: 'pages/signup-in.html'
 	})
 	.when('/projects', {
 	controller: 'ProjectController',
 	controllerAs: 'projectctrl',
 	templateUrl: 'pages/projects.html'
+	})
+	.when('/resume', {
+	controller: 'ResumeController',
+	controllerAs: 'resumectrl',
+	templateUrl: 'pages/resume.html'
+	})
+	.when('/contact', {
+	controller: 'ContactController',
+	controllerAs: 'contactctrl',
+	templateUrl: 'pages/contact.html'
 	})
 
 	}]);
@@ -32203,327 +32232,20 @@
 
 	'use strict';
 
-	(function(){
-
-	var app = angular.module('school');
-
-	app.contoller('SchoolController', ['$http', 'DataService', SchoolController])
-
-	app.directive('customSchool', function(){
-	    return {
-	      retrict: 'E',
-	      templateUrl: './templates/portfolio-school.html',
-	      controller:function($http){
-	        $http.get('./data-json/educationData.json')
-	        .then((result)=>{
-	          this.schools = result.data;
-	        });
-	      },
-	      controllerAs: 'resumeCtrl'
+	module.exports = function(app) {
+	  app.factory('ErrorService', function() {
+	    var error;
+	    return function(newError) {
+	      if (newError === null) return error = null;
+	      if (!newError) return error;
+	      return error = newError;
 	    };
 	  });
-
-
-	  app.directive('customNav', function(){
-	    return {
-	      restrict: 'E',
-	      templateUrl: './templates/portfolio-tabs.html',
-	      controller: function(){
-	        this.tab = 1;
-	        this.isSet = function(check){
-	          return this.tab === check;
-	        };
-	        this.setTab = function(active){
-	          this.tab = active;
-	        };
-	      },
-	      controllerAs: 'tabCtrl'
-	    };
-	  });
-
-
-	  app.directive('customEducation', function(){
-	    return {
-	      retrict: 'E',
-	      templateUrl: './templates/portfolio-school.html'
-	    };
-	  });
-	  app.directive('customWork', function(){
-	    return {
-	      retrict: 'E',
-	      templateUrl: './templates/portfolio-work.html'
-	    };
-	  });
-
-	  // app.directive('directiveLink', function(){
-	  //   return {
-	  //     restrict: 'A',
-	  //     replace: true,
-	  //     link: function($scope, element) {
-	  //       element.css('border-radius', '25px');
-	  //       element.css('text-align', 'center');
-	  //       element.css('color', 'blue');
-	  //       element.css('font-size', '3em');
-	  //       element.css('transform', 'translateX(10px) rotate(10deg) translateY(5px)');
-	  //
-	  //      }
-	  //    };
-	  //  });
-	})();
+	};
 
 
 /***/ },
 /* 9 */
-/***/ function(module, exports) {
-
-	// (function(app){
-	//
-	// angular.module('data')
-	// .factory('DataService', ['$http', function($http){
-	//   const mainRoute = './data-json/';
-	//
-	//   function History(dataFile){
-	//     this.dataFile = dataFile;
-	//   }
-	// History.prototype.getAll = function($http){
-	//     return $http.get(mainRoute + this.dataFile);
-	// };
-	// // History.prototype.getAllWork = function($http){
-	// //   return $http.get(mainRoute + this.dataFile);
-	// // };
-	// //
-	// return function(dataFile){
-	//   return new History(dataFile);
-	// };
-	//
-	//
-	//     }]);
-	//
-	//   })();
-
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = function(app){
-	  app.controller('ProjectController', ['$http','AuthService', '$location', function($http, AuthService, $location){
-	    const projectRoute = 'http://localhost:3000/projects';
-	    this.projects = ['projects']
-
-
-	    this.getProject = function(){
-	      $http.get(projectRoute, {
-	        headers: {
-	          token: AuthService.getToken()
-	        }
-	      })
-	      .then(function(result){
-	        this.projects = result.data;
-	      }, (err)=>{
-	        return err;
-	        $location.path('/signup');
-	      });
-	    };
-	    this.createProject = function(project){
-	      $http.post(projectRoute, project, {
-	        headers: {
-	          token: AuthService.getToken()
-	        }
-	      })
-	      .then(function(res){
-	        console.log(res);
-	        this.projects.push(res.data);
-	        this.newProject = null;
-	      });
-	    };
-	    this.removeProject = function(project){
-	      $http.delete(projectRoute + '/' + project._id, {
-	        headers: {
-	          token: AuthService.getToken()
-	        }
-	      })
-	      .then(function(res){
-	        this.projects = this.projects.filter((p)=> p._id != project._id);
-	      });
-	    };
-	    this.updateProject = function(project){
-	      $http.put(projectRoute + '/' + project._id, project, {
-	        headers: {
-	          token: AuthService.getToken()
-	        }
-	      })
-	      .then((res)=>{
-	        project.editing = false;
-	      }, (err)=> console.log(err));
-	    };
-	    this.toggleForm = function(project){
-	      if(!project.editing){
-	        project.backupName = project.name;
-	        project.editing = true;
-	      } else {
-	        project.name = project.backupName;
-	        project.editing = false;
-	      }
-	    }
-	}]);
-
-	};
-
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	// 'use strict';
-	//
-	// module.exports = function(app){
-	//   app.controller('ProjectController', ['$http','AuthService', '$location', function($http, AuthService, $location){
-	//     const projectRoute = 'http://localhost:3000/projects';
-	//     this.projects = ['projects']
-	//
-	//
-	//     this.getProject = function(){
-	//       $http.get(projectRoute, {
-	//         headers: {
-	//           token: AuthService.getToken()
-	//         }
-	//       })
-	//       .then(function(result){
-	//         this.projects = result.data;
-	//       }, (err)=>{
-	//         return err;
-	//         $location.path('/signup');
-	//       });
-	//     };
-	//     this.createProject = function(project){
-	//       $http.post(projectRoute, project, {
-	//         headers: {
-	//           token: AuthService.getToken()
-	//         }
-	//       })
-	//       .then(function(res){
-	//         console.log(res);
-	//         this.projects.push(res.data);
-	//         this.newProject = null;
-	//       });
-	//     };
-	//     this.removeProject = function(project){
-	//       $http.delete(projectRoute + '/' + project._id, {
-	//         headers: {
-	//           token: AuthService.getToken()
-	//         }
-	//       })
-	//       .then(function(res){
-	//         this.projects = this.projects.filter((p)=> p._id != project._id);
-	//       });
-	//     };
-	//     this.updateProject = function(project){
-	//       $http.put(projectRoute + '/' + project._id, project, {
-	//         headers: {
-	//           token: AuthService.getToken()
-	//         }
-	//       })
-	//       .then((res)=>{
-	//         project.editing = false;
-	//       }, (err)=> console.log(err));
-	//     };
-	//     this.toggleForm = function(project){
-	//       if(!project.editing){
-	//         project.backupName = project.name;
-	//         project.editing = true;
-	//       } else {
-	//         project.name = project.backupName;
-	//         project.editing = false;
-	//       }
-	//     }
-	// }]);
-	//
-	// };
-
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	'use strict';
-	module.exports = function(app){
-	  app.controller('UserController', ['$http', 'AuthService', '$location', function($http, AuthService, $location){
-	    var userRoute = 'http://localhost:8080/users';
-	    this.users = ['user'];
-
-	    this.signUp = function(user){
-	      AuthService.createUser(user, function(err, res){
-	        if(err) return err;
-	        $location.path('/home');
-	      });
-	    }
-
-	    this.signOut = function(){
-	      AuthService.signOut(()=>{
-	        $location.path('/signup');
-	      });
-	    }
-	    this.signIn = function(user){
-	      AuthService.signIn(user, (err, res)=>{
-	        if(err) return err;
-	        $location.path('/home');
-	      });
-	    };
-	  }]);
-	};
-
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = function(app) {
-
-
-	app.directive('customContact', function(){
-	    return {
-	      retrict: 'E',
-	      templateUrl: './pages/contact.html'
-	    };
-	  });
-
-	  app.directive('customHeader', function(){
-	      return {
-	        retrict: 'E',
-	        templateUrl: './pages/header.html'
-	      };
-	    });
-
-
-
-	  app.directive('customNav', function(){
-	    return {
-	      restrict: 'E',
-	      templateUrl: './pages/portfolio-tabs.html',
-	      controller: function(){
-	        this.tab = 1;
-	        this.isSet = function(check){
-	          return this.tab === check;
-	        };
-	        this.setTab = function(active){
-	          this.tab = active;
-	        };
-	      },
-	      controllerAs: 'tabCtrl'
-	    };
-	  });
-
-
-	};
-
-
-/***/ },
-/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32531,7 +32253,7 @@
 	module.exports = function(app) {
 	  app.factory('AuthService', ['$http', '$window', function($http, $window){
 	    var token;
-	    var url = 'http://localhost:8080/'
+	    var url = 'http://localhost:8080'
 	    var auth = {
 	      createUser(user, cb){
 	        cb || function(){};

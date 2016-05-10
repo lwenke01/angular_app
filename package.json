@@ -19,10 +19,17 @@
     "angular-route": "^1.5.5",
     "bcrypt": "^0.8.6",
     "body-parser": "^1.15.1",
+    "chai": "^3.5.0",
+    "css-loader": "^0.23.1",
+    "gulp-cli": "^1.2.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
     "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^1.6.0",
     "jsonwebtoken": "^6.2.0",
     "mongoose": "^4.4.16",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
