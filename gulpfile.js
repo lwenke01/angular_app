@@ -58,4 +58,4 @@ gulp.task('bundle:test', () => {
 
 
 
-gulp.task('default', ['bundle:dev', 'copy:image', 'copy', 'bundle:test']);
+gulp.task('default', ['bundle:dev', 'copy:image', 'copy', 'build:css','bundle:test']);

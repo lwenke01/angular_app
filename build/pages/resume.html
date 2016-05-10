@@ -1,24 +1,33 @@
-<!-- 
-<section class="resume-info" ng-show="tabCtrl.isSet(1)">
-  <div class="education-info">
-    <h1>Education</h1>
-    <div class="school-list" ng-repeat="school in edCtrl.schools | orderBy:'-yearGraduated'">
-      <h2>{{school.school}}  <em>({{school.location}})</em></h2>
-      <p>Graduated: {{school.yearGraduated}}</p>
-      <p>Degree: {{school.degree}}</p>
-    </div>
-  </div>
-</section>
+<div class="resumes">
 
-<h1>Work</h1>
-<div class="work-list" ng-controller="WorkController as wkrCtrl" ng-repeat="job in wkrCtrl.jobs | orderBy:'-endDate'">
-  <h2>{{job.company}} | {{job.position}} | ({{job.location}})</h2>
-  <p>duties:</p>
-  <ul>
-    <li>{{job.duties[0]}}</li>
-    <li>{{job.duties[1]}}</li>
-    <li>{{job.duties[2]}}</li>
-    <li>{{job.duties[3]}}</li>
-  </ul>
-  <p>{{job.startDate}} to {{job.endDate}}</p>
-</div> -->
+  <main data-ng-cloak data-ng-init="resumectrl.getResumes()">
+    <ul data-ng-repeat="resume in resumectrl.resumes">
+      <li>
+        <li><strong>company:</strong> {{resume.company}}</li><br>
+        <li><strong>title: </strong>{{resume.title}}</li><br>
+        <li><strong>description:</strong> {{resume.description}}</li><br>
+        <li><strong>dates:</strong> {{resume.dates}}</li><br>
+
+        <button data-ng-click="resumectrl.removeResume(resume)">Delete</button>
+        <button data-ng-click="resumectrl.toggleForm(resume)">Edit</button>
+        <form data-ng-if="resume.editing" data-ng-submit="resumectrl.updateResume(resume)">
+          <input type="text" placeholder="company name" data-ng-model="resume.company">
+            <input type="text"  placeholder="job title" data-ng-model="resume.title">
+            <input type="text"  placeholder="date description" data-ng-model="resume.description">
+            <input type="text" placeholder="dates employed" data-ng-model="resume.dates">
+          <button data-ng-click="resumectrl.toggleForm(resume)">Cancel</button>
+          <button type="submit">update</button>
+        </form>
+      </li>
+
+
+    </ul>
+    <form data-ng-submit="resumectrl.createResume(resumectrl.newResume)">
+      <input type="text" placeholder="company name" data-ng-model="resumectrl.newResume.company"/>
+      <input type="text" placeholder="job title" data-ng-model="resumectrl.newResume.title"/>
+        <input type="text" placeholder="description" data-ng-model="resumectrl.newResume.description"/>
+        <input type="text" placeholder="dates worked" data-ng-model="resumectrl.newResume.dates"/>
+      <button type="submit">New Resume</button>
+    </form>
+    <button ng-click="resumectrl.signOut()">Sign Out</button>
+  </main>

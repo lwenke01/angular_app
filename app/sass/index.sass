@@ -1,2 +1,250 @@
 @import normalize
-@import base
+
+
+
+
+
+$turquoise: rgb(89,196,197) !default
+$blue: rgb(0,200,248)  !default
+$dark-yellow: rgb(255,195,60)  !default
+$cream: rgb(251,226,180)  !default
+$pink: rgb(255,76,101)  !default
+$light-orange: rgb(243,134,48)  !default
+$opa-yellow: rgba(255,195,60,0.4)  !default
+$opa-cream: rgba(251,226,180,0.5)  !default
+
+$primary-color: $pink
+$secondary-color: $dark-yellow
+$teitary-color: $light-orange
+$gutter: 5em
+
+*
+  text-decoration: none
+
+
+body
+  background-color: $turquoise
+// padding: $gutter
+
+
+section
+  height: 100%
+  width: 100%
+  z-index: -100
+
+
+header
+  text-align: center
+  height: 100%
+
+
+footer
+  height: 8em
+  width: 100%
+  background-color: rgba(74,68,85,0.7)
+
+
+// .header-image
+//   background-image: url(https://linziboyd.files.wordpress.com/2013/08/open-road.jpg)
+//   background-size: cover
+//   background-position: center
+//   height: 400px
+//   width: 100%
+
+.main-title
+  color: white
+  text-align: center
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  position: absolute
+
+
+
+// .main-image
+//   background-image: url(https://github.com/RideQuest/rideshare-frontend/blob/master/app/img/lisa-bw.png)
+//   background-size: cover
+//   background-position: center
+//   height: 10em
+//   width: 10em
+//   padding: 3em
+
+
+
+
+h3
+  margin-top: 200px
+
+.top-bar
+  display: inline-block
+  background-color: $pink
+  height: 5em
+  width: 100%
+
+
+.navbar
+  height: 100%
+
+
+
+.logo
+  float: center
+  padding: .7em
+  font-size: 2em
+  font-family: 'Satisfy', cursive
+  color: white
+
+
+ul
+  height: 100%
+
+li
+  display: inline-block
+  height: 4em
+
+a
+  display: inline-block
+  color: $pink
+  font-family: sans-serif
+  padding: 0.5em 2em
+  margin: 1em auto
+
+.profile-wrapper
+  background-color: inherit
+  border: black 1px solid
+  height: auto
+  width: 90%
+  padding: 2em
+
+.sign
+  display: flex
+  flex-direction: row
+  text-align: right
+  background-color: rgb(243,134,48)
+  // padding: 2em
+  width: 100%
+  height: 35em
+  margin: 0 auto
+
+  // border: black 2px solid
+
+.d-boxes
+  display: flex
+  flex-direction: row
+  padding: 5em
+  // background-color: red
+
+.d-box1
+  height: 8em
+  width: 8em
+  background-color: white
+  border: grey 1px solid
+  padding: 2em
+  margin-right: 4em
+  background-color: $pink
+
+.d-box2
+  height: 8em
+  width: 8em
+  background-color: white
+  border: grey 1px solid
+  padding: 2em
+  margin-right: 4em
+
+.d-box3
+  height: 8em
+  width: 8em
+  background-color: white
+  border: grey 1px solid
+  padding: 2em
+  margin-right: 4em
+
+
+
+.boxes
+  display: inline-flex
+  flex-direction: row
+  padding: 5%
+  height: 100%
+
+.box1
+  height: 250px
+  width: 250px
+  padding: 5em
+  margin-right: 2em
+  text-align: center
+  background-color: $teitary-color
+
+.box2
+  height: 250px
+  width: 250px
+  padding: 5em
+  margin-right: 2em
+  text-align: center
+  background-color: $teitary-color
+
+h1
+  font-size: 2em
+  color: white
+  padding: 2em
+
+button
+  border-top: 1px solid #96d1f8
+  background: #65a9d7
+  background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7))
+  background: -webkit-linear-gradient(top, #3e779d, #65a9d7)
+  background: -moz-linear-gradient(top, #3e779d, #65a9d7)
+  background: -ms-linear-gradient(top, #3e779d, #65a9d7)
+  background: -o-linear-gradient(top, #3e779d, #65a9d7)
+  padding: 5px 10px
+  -webkit-border-radius: 8px
+  -moz-border-radius: 8px
+  border-radius: 8px
+  -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0
+  -moz-box-shadow: rgba(0,0,0,1) 0 1px 0
+  box-shadow: rgba(0,0,0,1) 0 1px 0
+  text-shadow: rgba(0,0,0,.4) 0 1px 0
+  color: white
+  font-size: 14px
+  font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif
+  text-decoration: none
+  vertical-align: middle
+
+button:hover
+  border-top-color: #28597a
+  background: #28597a
+  color: #ccc
+
+button:active
+  border-top-color: #1b435e
+  background: #1b435e
+
+#about-me-container
+  width: 100%
+  height: 100%
+  background-color: $light-orange
+
+#about-me-container
+  .aboutme-boxes:nth-child(odd)
+    margin-left: 50%
+    width: 50%
+
+#about-me-container
+  .aboutme-boxes:nth-child(even)
+    margin-right: 50%
+    width: 50%
+
+  .aboutme-boxes
+    position: relative
+    width: 100%
+    height: 100%
+
+  .about-img
+    max-width: 30%
+    border: 5 rgb(128,123,135) solid
+
+  .aboutme-boxes > h3
+    margin: 0
+
+  .right-side
+    margin-left: 30%auto

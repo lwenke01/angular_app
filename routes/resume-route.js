@@ -18,7 +18,7 @@ resumeRouter.get('/resumes', jwtAuth, (req, res)=>{
 
 resumeRouter.post('/resumes', jsonParser, jwtAuth, (req,res)=>{
   var newResume = new Resume(req.body);
-  newPorject.save((err, data)=>{
+  newResume.save((err, data)=>{
     if(err) return handleDBError(err, res);
 
     res.status(200).json(data);

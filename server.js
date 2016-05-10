@@ -14,12 +14,12 @@ app.use((req, res, next)=>{
 
 const authRouter = require(__dirname + '/routes/auth-route');
 const userRouter = require(__dirname + '/routes/user-route');
-// const resumeRouter = require(__dirname + '/routes/resume-route');
+const resumeRouter = require(__dirname + '/routes/resume-route');
 const projectRouter = require(__dirname + '/routes/project-route');
 
 app.use('/',authRouter);
 app.use('/',userRouter);
-// app.use('/',resumeRouter);
+app.use('/',resumeRouter);
 app.use('/', projectRouter);
 
 var PORT = process.env.PORT || 3000;
