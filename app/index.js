@@ -8,12 +8,14 @@ const app = angular.module('myApp', ['ngRoute']);
 require(__dirname + '/services/auth-service.js')(app);
 // require(__dirname + '/directives/app-directive.js')(app);
 
-app.controller('ProjectController', ['$http','AuthService', '$location', function($http, AuthService, $location){
+app.controller('ProjectController', ['$http','$window','AuthService', '$location', function($http,$window, AuthService, $location){
   const projectRoute = 'http://localhost:3000/projects';
   this.projects = ['projects']
 
 
   this.getProjects = function(){
+    var tokenFromLocalStorage = $window.localStorage.token;
+    console.log('localStorage?? ' + $window.localStorage.token);
     $http.get(projectRoute, {
       headers: {
         token: AuthService.getToken()

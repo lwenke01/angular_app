@@ -70,12 +70,14 @@
 	__webpack_require__(6)(app);
 	// require(__dirname + '/directives/app-directive.js')(app);
 
-	app.controller('ProjectController', ['$http','AuthService', '$location', function($http, AuthService, $location){
+	app.controller('ProjectController', ['$http','$window','AuthService', '$location', function($http,$window, AuthService, $location){
 	  const projectRoute = 'http://localhost:3000/projects';
 	  this.projects = ['projects']
 
 
 	  this.getProjects = function(){
+	    var tokenFromLocalStorage = $window.localStorage.token;
+	    console.log('localStorage?? ' + $window.localStorage.token);
 	    $http.get(projectRoute, {
 	      headers: {
 	        token: AuthService.getToken()
@@ -32109,7 +32111,7 @@
 	module.exports = function(app) {
 	  app.factory('AuthService', ['$http', '$window', function($http, $window){
 	    var token;
-	    var url = 'http://localhost:8080/'
+	    var url = 'http://localhost:3000'
 	    var auth = {
 	      createUser(user, cb){
 	        cb || function(){};

@@ -1,43 +1,47 @@
 <div class="projects">
-  <custom-header></custom-header>
-  <main ng-cloak ng-init="projectctrl.getProjects()">
+  
+  <main data-ng-cloak data-ng-init="projectctrl.getProjects()">
     <ul>
-      <li ng-repeat="project in projectctrl.projects">{{project.name}}
-        <button ng-click="projectctrl.removeProject(project)">Delete</button>
-        <button ng-click="projectctrl.toggleForm(project)">Edit</button>
-        <form ng-if="project.editing" ng-submit="projectctrl.updateProject(project)">
-          <input type="text" ng-model="project.name">
-          <button ng-click="projectctrl.toggleForm(project)">Cancel</button>
+      <li data-ng-repeat="project in projectctrl.projects">{{project.name}}
+          <li data-ng-repeat="project in projectctrl.projects">{{project.description}}
+        <button data-ng-click="projectctrl.removeProject(project)">Delete</button>
+        <button data-ng-click="projectctrl.toggleForm(project)">Edit</button>
+        <form data-ng-if="project.editing" data-ng-submit="projectctrl.updateProject(project)">
+          <input type="text" data-ng-model="project.name">
+            <input type="text" data-ng-model="project.description">
+            <input type="text" data-ng-model="project.created">
+            <input type="text" data-ng-model="project.course">
+          <button data-ng-click="projectctrl.toggleForm(project)">Cancel</button>
           <button type="submit">update</button>
         </form>
       </li>
 
-          <!-- <li ng-repeat="project in projectctrl.projects">{{project.description}}
-        <button ng-click="projectctrl.removeProject(project)">Delete</button>
-        <button ng-click="projectctrl.toggleForm(project)">Edit</button>
-        <form ng-if="project.editing" ng-submit="projectctrl.updateProject(project)">
-          <input type="text" ng-model="project.name">
-            <input type="text" ng-model="project.description">
-          <button ng-click="projectctrl.toggleForm(project)">Cancel</button>
+          <li data-ng-repeat="project in projectctrl.projects">{{project.description}}
+        <button data-ng-click="projectctrl.removeProject(project)">Delete</button>
+        <button data-ng-click="projectctrl.toggleForm(project)">Edit</button>
+        <form data-ng-if="project.editing" data-ng-submit="projectctrl.updateProject(project)">
+          <input type="text" data-ng-model="project.name">
+            <input type="text" data-ng-model="project.description">
+          <button data-ng-click="projectctrl.toggleForm(project)">Cancel</button>
           <button type="submit">update</button>
         </form>
       </li>
-      <li ng-repeat="project in projectctrl.projects">{{project.description}}
-    <button ng-click="projectctrl.removeProject(project)">Delete</button>
-    <button ng-click="projectctrl.toggleForm(project)">Edit</button>
-    <form ng-if="project.editing" ng-submit="projectctrl.updateProject(project)">
-      <input type="text" ng-model="project.name">
-        <input type="text" ng-model="project.description">
-      <button ng-click="projectctrl.toggleForm(project)">Cancel</button>
+      <li data-ng-repeat="project in projectctrl.projects">{{project.description}}
+    <button data-ng-click="projectctrl.removeProject(project)">Delete</button>
+    <button data-ng-click="projectctrl.toggleForm(project)">Edit</button>
+    <form data-ng-if="project.editing" data-ng-submit="projectctrl.updateProject(project)">
+      <input type="text" data-ng-model="project.name">
+        <input type="text" data-ng-model="project.description">
+      <button data-ng-click="projectctrl.toggleForm(project)">Cancel</button>
       <button type="submit">update</button>
     </form>
   </li>
-    </ul> -->
-    <form ng-submit="projectctrl.createProject(projectctrl.newPerson)">
-      <input type="text" ng-model="projectctrl.newProject.name"/>
-      <input type="text" ng-model="projectctrl.newProject.description"/>
-        <input type="text" ng-model="projectctrl.newProject.created"/>
-        <input type="text" ng-model="projectctrl.newProject.course"/>
+    </ul>
+    <form data-ng-submit="projectctrl.createProject(projectctrl.newPerson)">
+      <input type="text" data-ng-model="projectctrl.newProject.name"/>
+      <input type="text" data-ng-model="projectctrl.newProject.description"/>
+        <input type="text" data-ng-model="projectctrl.newProject.created"/>
+        <input type="text" data-ng-model="projectctrl.newProject.course"/>
       <button type="submit">New Project</button>
     </form>
     <button ng-click="projectctrl.signOut()">Sign Out</button>
