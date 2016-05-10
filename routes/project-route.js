@@ -18,7 +18,7 @@ projectRouter.get('/projects', jwtAuth, (req, res)=>{
 
 projectRouter.post('/projects', jsonParser, jwtAuth, (req,res)=>{
   var newProject = new Project(req.body);
-  newPorject.save((err, data)=>{
+  newProject.save((err, data)=>{
     if(err) return handleDBError(err, res);
 
     res.status(200).json(data);
