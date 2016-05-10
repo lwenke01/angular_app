@@ -1,53 +1,6 @@
-<section class="homepage">
 
-<custom-header></custom-header>
-<div class="projects">
-  <main data-ng-cloak data-ng-init="projectctrl.getProjects()">
-    <ul>
-      <li data-ng-repeat="project in projectctrl.projects">{{project.name}}
-          <li data-ng-repeat="project in projectctrl.projects">{{project.description}}
-        <button data-ng-click="projectctrl.removeProject(project)">Delete</button>
-        <button data-ng-click="projectctrl.toggleForm(project)">Edit</button>
-        <form data-ng-if="project.editing" data-ng-submit="projectctrl.updateProject(project)">
-          <input type="text" data-ng-model="project.name">
-            <input type="text" data-ng-model="project.description">
-            <input type="text" data-ng-model="project.created">
-            <input type="text" data-ng-model="project.course">
-          <button data-ng-click="projectctrl.toggleForm(project)">Cancel</button>
-          <button type="submit">update</button>
-        </form>
-      </li>
-
-          <li data-ng-repeat="project in projectctrl.projects">{{project.description}}
-        <button data-ng-click="projectctrl.removeProject(project)">Delete</button>
-        <button data-ng-click="projectctrl.toggleForm(project)">Edit</button>
-        <form data-ng-if="project.editing" data-ng-submit="projectctrl.updateProject(project)">
-          <input type="text" data-ng-model="project.name">
-            <input type="text" data-ng-model="project.description">
-          <button data-ng-click="projectctrl.toggleForm(project)">Cancel</button>
-          <button type="submit">update</button>
-        </form>
-      </li>
-      <li data-ng-repeat="project in projectctrl.projects">{{project.description}}
-    <button data-ng-click="projectctrl.removeProject(project)">Delete</button>
-    <button data-ng-click="projectctrl.toggleForm(project)">Edit</button>
-    <form data-ng-if="project.editing" data-ng-submit="projectctrl.updateProject(project)">
-      <input type="text" data-ng-model="project.name">
-        <input type="text" data-ng-model="project.description">
-      <button data-ng-click="projectctrl.toggleForm(project)">Cancel</button>
-      <button type="submit">update</button>
-    </form>
-  </li>
-    </ul>
-    <form data-ng-submit="projectctrl.createProject(projectctrl.newPerson)">
-      <input type="text" data-ng-model="projectctrl.newProject.name"/>
-      <input type="text" data-ng-model="projectctrl.newProject.description"/>
-        <input type="text" data-ng-model="projectctrl.newProject.created"/>
-        <input type="text" data-ng-model="projectctrl.newProject.course"/>
-      <button type="submit">New Project</button>
-    </form>
-    <button ng-click="projectctrl.signOut()">Sign Out</button>
-  </main>
+<div class="intro">
+  <h1> Lisa Wenke:</h1>
+  <p> I am a software developer with a background in web analytics, digital media and marketing.</p>
 
 </div>
-</section>

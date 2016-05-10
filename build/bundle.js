@@ -68,7 +68,7 @@
 	const app = angular.module('myApp', ['ngRoute']);
 
 	__webpack_require__(6)(app);
-	__webpack_require__(7)(app);
+	// require(__dirname + '/directives/app-directive.js')(app);
 
 	app.controller('ProjectController', ['$http','AuthService', '$location', function($http, AuthService, $location){
 	  const projectRoute = 'http://localhost:3000/projects';
@@ -170,6 +170,11 @@
 	  controller: 'ProjectController',
 	  controllerAs: 'projectctrl',
 	  templateUrl: 'pages/signup-in.html'
+	})
+	.when('/projects', {
+	controller: 'ProjectController',
+	controllerAs: 'projectctrl',
+	templateUrl: 'pages/projects.html'
 	})
 
 	}]);
@@ -32269,30 +32274,30 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	(function(app){
-
-	angular.module('data')
-	.factory('DataService', ['$http', function($http){
-	  const mainRoute = './data-json/';
-
-	  function History(dataFile){
-	    this.dataFile = dataFile;
-	  }
-	History.prototype.getAll = function($http){
-	    return $http.get(mainRoute + this.dataFile);
-	};
-	// History.prototype.getAllWork = function($http){
-	//   return $http.get(mainRoute + this.dataFile);
+	// (function(app){
+	//
+	// angular.module('data')
+	// .factory('DataService', ['$http', function($http){
+	//   const mainRoute = './data-json/';
+	//
+	//   function History(dataFile){
+	//     this.dataFile = dataFile;
+	//   }
+	// History.prototype.getAll = function($http){
+	//     return $http.get(mainRoute + this.dataFile);
+	// };
+	// // History.prototype.getAllWork = function($http){
+	// //   return $http.get(mainRoute + this.dataFile);
+	// // };
+	// //
+	// return function(dataFile){
+	//   return new History(dataFile);
 	// };
 	//
-	return function(dataFile){
-	  return new History(dataFile);
-	};
-
-
-	    }]);
-
-	  })();
+	//
+	//     }]);
+	//
+	//   })();
 
 
 /***/ },

@@ -6,7 +6,7 @@ require('angular-route');
 const app = angular.module('myApp', ['ngRoute']);
 
 require(__dirname + '/services/auth-service.js')(app);
-require(__dirname + '/directives/app-directive.js')(app);
+// require(__dirname + '/directives/app-directive.js')(app);
 
 app.controller('ProjectController', ['$http','AuthService', '$location', function($http, AuthService, $location){
   const projectRoute = 'http://localhost:3000/projects';
@@ -108,6 +108,11 @@ app.config(['$routeProvider', function(router){
   controller: 'ProjectController',
   controllerAs: 'projectctrl',
   templateUrl: 'pages/signup-in.html'
+})
+.when('/projects', {
+controller: 'ProjectController',
+controllerAs: 'projectctrl',
+templateUrl: 'pages/projects.html'
 })
 
 }]);

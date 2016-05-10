@@ -12,13 +12,13 @@ const sources = {
 
 };
 
-// gulp.task('build:css', function() {
-//   gulp.src('app/sass/index.sass')
-//     .pipe(sourcemaps.init())
-//     .pipe(sass())
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest('build/'));
-// });
+gulp.task('build:css', function() {
+  gulp.src('app/sass/index.sass')
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('build/'));
+});
 
 gulp.task('bundle:dev', () => {
   return gulp.src(sources.js)
