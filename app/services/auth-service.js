@@ -2,18 +2,19 @@
 
 module.exports = function(app) {
   app.factory('AuthService', ['$http', '$window', function($http, $window){
-    var token;
     var url = 'http://localhost:3000'
+    var token;
+
     var auth = {
       createUser(user, cb){
         cb || function(){};
         $http.post(url + '/signup', user)
         .then((res)=>{
           token = $window.localStorage.token = res.data.token;
-          cb(null, res)
+          cb(null, res);
         }, (err)=>{
-          cb(err)
-        })
+          cb(err);
+        });
       },
       getToken(){
         return token || $window.localStorage.token;
@@ -34,10 +35,10 @@ module.exports = function(app) {
           cb(null, res);
         }, (err) =>{
           cb(err);
-        })
+        });
       }
-    }
+    };
     return auth;
-  }])
+  }]);
 
 };

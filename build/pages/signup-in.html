@@ -1,4 +1,5 @@
 <section>
+   <h1 ng-if="authctrl.error">{{authctrl.error}}</h1>
   <form ng-submit="authctrl.signUp(newUser)">
     <input type="text" placeholder="email" ng-model="newUser.email">
     <input type="text" placeholder="username" ng-model="newUser.username">
