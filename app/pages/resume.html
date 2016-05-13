@@ -1,6 +1,8 @@
 <div class="resumes">
 
+
   <main data-ng-cloak data-ng-init="resumectrl.getResumes()">
+    <button ng-click="resumectrl.signOut()">Sign Out</button>
     <ul data-ng-repeat="resume in resumectrl.resumes">
       <li>
         <li><strong>company:</strong> {{resume.company}}</li><br>
@@ -29,5 +31,5 @@
         <input type="text" placeholder="dates worked" data-ng-model="resumectrl.newResume.dates"/>
       <button type="submit">New Resume</button>
     </form>
-    <button ng-click="resumectrl.signOut()">Sign Out</button>
+      <button data-ng-click="authctrl.signOut(user)">Sign Out</button>
   </main>
